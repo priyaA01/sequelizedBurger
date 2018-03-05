@@ -94,6 +94,6 @@ $("#delete-btn").on("click", function(event) {
 // Send an AJAX POST-request with jQuery
 // Make a get request to our api route that will return every book
 $.get("/api", function(data) {
-
+  console.log("test");
   renderBurger(data);
 });

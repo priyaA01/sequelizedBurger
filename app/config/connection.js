@@ -4,9 +4,13 @@
 
 // Dependencies
 var Sequelize = require("sequelize");
-
+var sequelize;
 // Creates mySQL connection using Sequelize
-var sequelize = new Sequelize("sequelize_burger", "root", "welcome1", {
+if(process.env.JAWSDB_URL)
+{
+sequelize = new Sequelize(process.env.JAWSDB_URL);
+}
+sequelize = new Sequelize("sequelize_burger", "root", "welcome1", {
   host: "localhost",
   dialect: "mysql",
   pool: {
