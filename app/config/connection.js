@@ -10,6 +10,8 @@ if(process.env.JAWSDB_URL)
 {
 sequelize = new Sequelize(process.env.JAWSDB_URL);
 }
+else{
+
 sequelize = new Sequelize("sequelize_burger", "root", "welcome1", {
   host: "localhost",
   dialect: "mysql",
@@ -19,6 +21,6 @@ sequelize = new Sequelize("sequelize_burger", "root", "welcome1", {
     idle: 10000
   }
 });
-
+}
 // Exports the connection for other files to use
 module.exports = sequelize;
