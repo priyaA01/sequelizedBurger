@@ -43,7 +43,7 @@ module.exports = function(app) {
       });
   });
 
-  // Delete a book
+  // Delete a burger
   app.post("/api/delete", function(req, res) {
     console.log(req.body);
      Burger.destroy({

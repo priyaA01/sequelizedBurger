@@ -1,4 +1,4 @@
-// The code in add.js handles what happens when the user clicks the "Add a book" button.
+// The code in add.js handles what happens when the user clicks the "Add a burger" button.
 
 // When user clicks add-btn
 $("#add-btn").on("click", function(event) {
