@@ -18,12 +18,13 @@ $("#add-btn").on("click", function(event) {
       // Log the data we found
       console.log(data);
       renderBurger(data);
+        location.reload(); 
+
 
     });
 
    $("#burger_name").val("");
-    location.reload(); 
-  }
+    }
    
      
 });
@@ -33,29 +34,17 @@ function renderBurger(data) {
   
   if (data.length !== 0) {
 
-    //console.log("inside render");
     for (var i = 0; i < data.length; i++) {
-      if(data[i].devoured === false)
+      if(data[i].devoured)
       {
-        var div = $("<div>");
-        div.addClass("well");
-        div.attr("id", "burger-well-" + i);
-        $("#well-section").append(div);
-
-      // Now  we add our book data to the well we just placed on the page
-        $("#burger-well-" + i).append("<p>" + data[i].id +"  " + data[i].burger_name + "<button class='update' data-id='" + data[i].id + "'>EAT UP</button></p>");
-        }
-        else
-        {
-            var div = $("<div>");
-            div.addClass("well");
-            div.attr("id", "burger-well-" + i);
-            $("#well-section-done").append(div);
-
-          // Now  we add our book data to the well we just placed on the page
-            $("#burger-well-" + i).append("<p>" + data[i].id +"  " + data[i].burger_name + "</p>");
-            
-        }
+       $("#well-section-done").append("<p>" + data[i].id +"  " + data[i].burger_name + "</p>");
+          
+      }
+      else
+      {
+         $("#well-section").append("<p>" + data[i].id +"  " + data[i].burger_name + "<button class='update' data-id='" + data[i].id + "'>EAT UP</button></p>");
+      
+      }
       }    
 
   }
@@ -71,13 +60,15 @@ function renderBurger(data) {
           // Log the data we found
 
           console.log("updated");
+             location.reload();
+   
         });
 
-      location.reload();
     });
 
 // When user clicks add-btn
-$("#delete-btn").on("click", function(event) {
+$(".create-form").on("click", "#delete-btn",function(event) {
+  console.log("inside delete");
   event.preventDefault();
 
   // Send an AJAX POST-request with jQuery
@@ -86,9 +77,10 @@ $("#delete-btn").on("click", function(event) {
     .then(function(data) {
       // Log the data we found
       console.log("deleted");
+      location.reload(); 
     });
 
-  location.reload(); 
+  
 });
 
 // Send an AJAX POST-request with jQuery
