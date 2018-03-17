@@ -33,11 +33,11 @@ function renderBurger(data) {
   if (data.length !== 0) {
 
     for (var i = 0; i < data.length; i++) {
-      if (data[i].devoured) {
-        $("#well-section-done").append("<p>" + data[i].id + "  " + data[i].burger_name + "</p>");
+      if (data[i].devoured) {                
+        $("#well-section-done").append("<br><input type='text' value='" + data[i].burger_name + "' disabled>");
 
       } else {
-        $("#well-section").append("<p>" + data[i].id + "  " + data[i].burger_name + "<button class='update' data-id='" + data[i].id + "'>EAT UP</button></p>");
+        $("#well-section").append("<input type='text' value='" + data[i].burger_name + "' disabled> <button class='update' data-id='" + data[i].id + "'>EAT UP</button></p>");
 
       }
     }

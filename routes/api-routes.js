@@ -9,7 +9,6 @@ module.exports = function (app) {
   // Get all burgers
   app.get("/api", function (req, res) {
     db.Burger.findAll({}).then(function (results) {
-      console.log("results" + results);
       res.json(results);
     });
   });
@@ -42,7 +41,6 @@ module.exports = function (app) {
 
   // Delete a burger
   app.post("/api/delete", function (req, res) {
-    console.log(req.body);
     db.Burger.destroy({
       where: {
         devoured: {
