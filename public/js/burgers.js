@@ -1,32 +1,3 @@
-// The code in add.js handles what happens when the user clicks the "Add a burger" button.
-
-// When user clicks add-btn
-$("#add-btn").on("click", function (event) {
-  event.preventDefault();
-  var burgerName = $("#burger_name").val().trim();
-  // Make a newBurger object
-  if (burgerName != "") {
-    var newBurger = {
-      burger_name: burgerName
-    };
-
-    // Send an AJAX POST-request with jQuery
-    $.post("/api/new", newBurger)
-      // On success, run the following code
-      .then(function (data) {
-        // Log the data we found
-        console.log(data);
-        renderBurger(data);
-        location.reload();
-
-
-      });
-  // Empty each input box by replacing the value with an empty string
-    $("#burger_name").val("");
-  }
-
-
-});
 
 function renderBurger(data) {
   
@@ -44,17 +15,43 @@ function renderBurger(data) {
 
   }
 }
+
+// When user clicks add-btn
+$("#add-btn").on("click", function (event) {
+  event.preventDefault();
+  var burgerName = $("#burger_name").val().trim();
+  // Make a newBurger object
+  if (burgerName != "") {
+    var newBurger = {
+      burger_name: burgerName
+    };
+
+    // Send an AJAX POST-request with jQuery
+    $.post("/api/new", newBurger)
+      // On success, run the following code
+      .then(function (data) {
+        // Log the data we found
+        renderBurger(data);
+        location.reload();
+
+
+      });
+  // Empty each input box by replacing the value with an empty string
+    $("#burger_name").val("");
+  }
+
+
+});
+
 $("#well-section").on("click", ".update", function () {
   event.preventDefault();
   var id = $(this).attr("data-id");
 
-  console.log(id);
   $.get("/api/update/" + id)
     // On success, run the following code
     .then(function (updateData) {
       // Log the data we found
 
-      console.log("updated");
       location.reload();
 
     });
@@ -63,15 +60,13 @@ $("#well-section").on("click", ".update", function () {
 
 // When user clicks delete-btn
 $(".create-form").on("click", "#delete-btn", function (event) {
-  console.log("inside delete");
-  event.preventDefault();
+ event.preventDefault();
 
   // Send an AJAX POST-request with jQuery
   $.post("/api/delete")
     // On success, run the following code
     .then(function (data) {
       // Log the data we found
-      console.log("deleted");
       location.reload();
     });
 
@@ -81,6 +76,5 @@ $(".create-form").on("click", "#delete-btn", function (event) {
 // Send an AJAX POST-request with jQuery
 // Make a get request to our api route that will return every burger
 $.get("/api", function (data) {
-  console.log("test");
   renderBurger(data);
 });
